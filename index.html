@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body class="body">
+    <style>
+        *{
+    padding: 0;
+    margin: 0;
+    font-family: "Radio Canada", sans-serif;
+}
+.body{
+    background: linear-gradient(90deg, chartreuse, forestgreen);
+  
+}
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+
+}
+.header h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    margin: 35px;
+    animation: 2s infinite h1;
+}
+@keyframes h1{
+    50%{
+        transform: translateY(10px);
+    }
+}
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 35px;
+}
+.row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn{
+    border: 1px solid black;
+    box-shadow:  inset 0 0 1em gold, 0 0 2em red;
+    border-radius: 30px;
+    height: 75px;
+    margin: 2px;
+    width: 75px;
+    text-align: center;
+    font-size: 50px;
+    font-weight: 500;
+    transition: all 0.1s ease-in-out;
+}
+.btn:hover{
+    cursor: pointer;
+    background-color: rgb(240, 240, 240);
+    transform: scale(1.25,1.25);
+    transition:0.3s all;
+}
+.btn:disabled{
+    color: black;
+    cursor: no-drop;
+}
+.result{
+    text-align: center;
+    font-size: 30px;
+    color: white;
+}
+.reset{
+    text-align: center;
+}
+#reset{
+    border: 1px solid black;
+    cursor: pointer;
+    color: black;
+    background-color: white;
+    border-radius: 50%;
+    border: 7px solid forestgreen;
+    height: 100px;
+    width: 100px;
+    font-size: 17px;
+    margin: 30px;
+    transition: all 0.1s ease-in-out;
+}
+
+#reset:hover{
+    color: white;
+    background: black;
+    box-shadow:  inset 0 0 4em gold, 0 0 2em red;
+}
+.footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.h2{
+    color: chartreuse
+}
+    </style>
+   <!--  -->
+   <div class="header"><h1>Tic Tac Tae</h1></div>
+   <div class="box">
+       <div class="row">
+           <input class="btn" type="text" readonly>
+           <input class="btn" type="text" readonly>
+           <input class="btn" type="text" readonly>
+       </div>
+       <div class="row">
+        <input class="btn" type="text" readonly>
+        <input class="btn" type="text" readonly>
+        <input class="btn" type="text" readonly>
+    </div>
+    <div class="row">
+        <input class="btn" type="text" readonly>
+        <input class="btn" type="text" readonly>
+        <input class="btn" type="text" readonly>
+    </div>
+   </div>
+   <p class="result">player x turn</p>
+
+   <div class="reset">
+<button id="reset">Reset</button>
+   </div>
+   <!-- footer -->
+   <footer class="footer">
+     <h2 class="h2">By David_Hrkt</h2>
+   </footer>
+   <script>
+       let cells=['','','','','','','','',''];
+let currentplayer= 'x';
+let result= document.querySelector('.result');
+let btns = document.querySelectorAll('.btn');
+let conditions=[
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+];
+const tictactoe = (element, index)=>{
+    element.value=currentplayer;
+    element.disabled=true;
+    cells[index]=currentplayer;
+    currentplayer = currentplayer == 'x' ? 'o':'x';
+    result.innerHTML='player ${currentplayer} Turn';
+
+    for(let i=0; i< conditions.length; i++) {
+        let condition = conditions[i];
+        let a = cells[condition[0]];
+        let b = cells[condition[1]];
+        let c = cells[condition[2]];
+
+        if(a == ''||  b == '' ||  c == '') {
+            continue;
+        }  
+        if((a==b) && (b==c)){
+            result.innerHTML='player ${a} Won Yeees';
+            btns.forEach((btn)=> btn.disabled = true);
+        }
+    }
+};
+
+function reset() {
+    cells = ['','','','','','','','',''];
+    btns.forEach((btn)=>{
+        btn.value='';
+    });
+    currentplayer = 'x';
+    result.innerHTML = 'player x Turn';
+    btns.forEach((btn)=> btn.disabled = false);
+};
+
+document.querySelector('#reset').addEventListener('click',reset);
+
+btns.forEach((btn, i)=> {
+    btn.addEventListener('click', () => tictactoe(btn, i));
+});
+   </script>
+
+    <script src="code.js"></script>
+</body>
+</html>

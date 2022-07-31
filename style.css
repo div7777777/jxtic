@@ -1,0 +1,99 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "Radio Canada", sans-serif;
+}
+.body{
+    background: linear-gradient(90deg, chartreuse, forestgreen);
+  
+}
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+
+}
+.header h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    margin: 35px;
+    animation: 2s infinite h1;
+}
+@keyframes h1{
+    50%{
+        transform: translateY(10px);
+    }
+}
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 35px;
+}
+.row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn{
+    border: 1px solid black;
+    box-shadow:  inset 0 0 1em gold, 0 0 2em red;
+    border-radius: 30px;
+    height: 75px;
+    margin: 2px;
+    width: 75px;
+    text-align: center;
+    font-size: 50px;
+    font-weight: 500;
+    transition: all 0.1s ease-in-out;
+}
+.btn:hover{
+    cursor: pointer;
+    background-color: rgb(240, 240, 240);
+    transform: scale(1.25,1.25);
+    transition:0.3s all;
+}
+.btn:disabled{
+    color: black;
+    cursor: no-drop;
+}
+.result{
+    text-align: center;
+    font-size: 30px;
+    color: white;
+}
+.reset{
+    text-align: center;
+}
+#reset{
+    border: 1px solid black;
+    cursor: pointer;
+    color: black;
+    background-color: white;
+    border-radius: 50%;
+    border: 7px solid forestgreen;
+    height: 100px;
+    width: 100px;
+    font-size: 17px;
+    margin: 30px;
+    transition: all 0.1s ease-in-out;
+}
+
+#reset:hover{
+    color: white;
+    background: black;
+    box-shadow:  inset 0 0 4em gold, 0 0 2em red;
+}
+.footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.h2{
+    color: chartreuse
+}
